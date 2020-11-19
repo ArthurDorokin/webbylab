@@ -1,0 +1,33 @@
+{
+  "name": "webbylab",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "server": "nodemon index.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArthurDorokin/webbylab.git"
+  },
+  "author": "artur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArthurDorokin/webbylab/issues"
+  },
+  "homepage": "https://github.com/ArthurDorokin/webbylab#readme",
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.15",
+    "nodemon": "^2.0.6",
+    "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5"
+  }
+}
