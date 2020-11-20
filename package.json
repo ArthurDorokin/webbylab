@@ -23,11 +23,15 @@
   "dependencies": {
     "concurrently": "^5.3.0",
     "express": "^4.17.1",
+    "moment": "^2.29.1",
     "mongoose": "^5.10.15",
     "nodemon": "^2.0.6",
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "line-reader": "^0.4.0",
+    "linereader": "^1.1.0",
+    "multer": "^1.4.2"
   }
 }

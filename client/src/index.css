@@ -1,0 +1,86 @@
+.container {
+    width: 970px;
+    margin: 0 auto;
+}
+
+.main {
+    display: flex;
+    /*align-items: end;*/
+    justify-content: space-between;
+}
+
+.main .uploadFile {
+    display: flex;
+    align-items: center;
+    margin: 50px 0 50px 0;
+}
+
+.main .btn-add-file {
+    outline: none;
+    border: none;
+    background: #ec9791;
+    padding: 6px 15px 6px 15px;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.main .btn-add-file:hover {
+    background: #da645b;
+    transition: .5s;
+}
+
+.main .listMovie a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.main .listMovie p {
+    color: #000000;
+}
+
+.main .listMovie .itemList {
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    cursor: pointer;
+    padding: 15px 0;
+}
+
+.main .listMovie .itemList .author {
+    display: flex;
+    align-items: center;
+}
+
+.main .listMovie .itemList .author p {
+    margin: 0;
+}
+
+.main .left {
+    margin: 50px 0 0 0;
+    width: 200px;
+}
+/*sidebar*/
+.main .left .sidebar {
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.main .left .item-sidebar {
+    padding: 8px;
+    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
+
+.main .left .item-sidebar:last-child {
+    border-bottom: none;
+}
+
+.main .left .item-sidebar .input-search {
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    padding: 7px 35px 7px 10px;
+    border: 1px solid #d6d6d6;
+    position: relative;
+    outline: none;
+    box-sizing: border-box;;
+}
+/*sidebar*/
