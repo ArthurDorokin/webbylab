@@ -21,27 +21,28 @@
 .main .btn-add-file {
     outline: none;
     border: none;
-    background: #ec9791;
+    background: #6ad436;
     padding: 6px 15px 6px 15px;
     transition: .5s;
     cursor: pointer;
 }
 
 .main .btn-add-file:hover {
-    background: #da645b;
+    background: #47a01b;
     transition: .5s;
 }
 
 .main .listMovie a {
     text-decoration: none;
     color: #000000;
+    display: block;
 }
 
 .main .listMovie p {
     color: #000000;
 }
 
-.main .listMovie .itemList {
+.main .listMovie .listMovie-item {
     border-bottom: 1px solid rgba(0, 0, 0, .1);
     cursor: pointer;
     padding: 15px 0;
@@ -68,6 +69,26 @@
 
 .main .listMovie .itemList .author p {
     margin: 0;
+}
+
+.main .listMovie .listMovie-item .wrap-for-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin: 15px 0 0 0;
+}
+
+.main .listMovie .listMovie-item .btn-delete {
+    outline: none;
+    border: none;
+    background: #ec9791;
+    padding: 6px 15px 6px 15px;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.main .listMovie .listMovie-item .btn-delete:hover {
+    background: #da645b;
+    transition: .5s;
 }
 
 .main .left {
@@ -126,10 +147,14 @@
 .main .left .sidebar .block-form form .btn-add-data {
     outline: none;
     border: none;
-    background: #82e054;
+    background: #6ad436;
     padding: 6px 15px 6px 15px;
     transition: .5s;
     cursor: pointer;
+}
+.main .left .sidebar .block-form form .btn-add-data.disabled {
+    pointer-events: none;
+    background: #c0e8ad;
 }
 
 .main .left .sidebar .block-form form .btn-add-data:hover {
@@ -138,3 +163,21 @@
 }
 
 /*sidebar*/
+
+/*block-info*/
+.block-info .block-info-wrap {
+    border-bottom: 1px solid #d6d6d6;
+    margin: 50px 0 0 0;
+}
+
+.block-info .block-info-wrap p strong {
+    width: 110px;
+    display: inline-block;
+}
+
+.back-page a{
+    color: #000000;
+    text-decoration: none;
+}
+
+/*block-info*/

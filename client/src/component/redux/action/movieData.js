@@ -14,6 +14,18 @@ export const fetchMovieFailure = error => ({
     payload: error
 })
 
+export const takeIdMovie = id => ({
+    type: "TAKE_ID_MOVIE",
+    payload: id
+})
+
+export const deleteMoviePush = id => ({
+    type: "DELETE_PUSH_MOVIE",
+    payload: id
+})
+
+
+
 export const fetchMovie = () => {
     return (dispatch) => {
         dispatch(fetchMovieRequest)

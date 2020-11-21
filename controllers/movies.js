@@ -39,18 +39,18 @@ module.exports.importMovie = async function (req, res) {
                 let array = [];
 
                 reader.on('line', line => {
-                        if (line.startsWith('Title:')) {
-                            array.push(line.split('Title:'))
-                        }
-                        if (line.startsWith('Release Year:')) {
-                            array.push(line.split('Release Year:'))
-                        }
-                        if (line.startsWith('Format:')) {
-                            array.push(line.split('Format:'))
-                        }
-                        if (line.startsWith('Stars:')) {
-                            array.push(line.split('Stars:'))
-                        }
+                    if (line.startsWith('Title:')) {
+                        array.push(line.split('Title:'))
+                    }
+                    if (line.startsWith('Release Year:')) {
+                        array.push(line.split('Release Year:'))
+                    }
+                    if (line.startsWith('Format:')) {
+                        array.push(line.split('Format:'))
+                    }
+                    if (line.startsWith('Stars:')) {
+                        array.push(line.split('Stars:'))
+                    }
                 });
 
                 reader.on('close', () => resolve(array));
@@ -61,7 +61,7 @@ module.exports.importMovie = async function (req, res) {
             convert(req.file.path)
                 .then(resp => {
                     for (let i = 0; i <= resp.length - 1; i += 4) {
-                        if (resp[i] && resp[i+1] && resp[i+2] && resp[i+3]) {
+                        if (resp[i] && resp[i + 1] && resp[i + 2] && resp[i + 3]) {
                             if (resp[i][1] && resp[i + 1][1] && resp[i + 2][1] && resp[i + 3][1]) {
                                 const movies = new Movie({
                                     Title: resp[i][1],
@@ -111,12 +111,12 @@ module.exports.addMovie = async function (req, res) {
             Stars: req.body.Stars,
             id: Math.floor(Math.random() * (15000 - 100) + 100 - 6)
         });
-    try {
-        await movie.save();
-        res.status(201).json(movie)
-    } catch (e) {
-        errorHandler(res, e)
-    }
+        try {
+            await movie.save();
+            res.status(201).json(movie)
+        } catch (e) {
+            errorHandler(res, e)
+        }
     } else {
         errorHandler(res, 'Please specify all fields for movie!')
     }

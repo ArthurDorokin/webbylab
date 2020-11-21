@@ -7,6 +7,7 @@ import {createStore, compose, applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import rootReducer from "./component/redux/reducers/rootReducer";
 import thunk from "redux-thunk";
+import {loadState, saveState} from './localStorage'
 
 const composeEnhancers =
     typeof window === 'object' &&
@@ -14,12 +15,19 @@ const composeEnhancers =
         window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
         }) : compose;
 
+const persistedState = loadState();
+
 const store = createStore(
     rootReducer,
+    persistedState,
     composeEnhancers(
         applyMiddleware(thunk)
     )
 )
+
+store.subscribe(()=>{
+    saveState(store.getState());
+})
 
 const app = (
     <Provider store={store}>

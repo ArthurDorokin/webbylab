@@ -1,20 +1,41 @@
 import React, {Component} from "react";
-//import {useHttp} from '../hooks/http.hook'
 import {connect} from "react-redux";
-import {fetchMovie} from "../redux/action/movieData";
+import {deleteMoviePush, fetchMovie, takeIdMovie} from "../redux/action/movieData";
 import MovieSidebar from "./MovieSidebar";
 import {NavLink} from "react-router-dom";
 import {importMovie} from "../redux/action/movieData";
 
 class Movies extends Component {
+    state = {
+        arr: []
+    };
+
     componentDidMount() {
         this.props.fetchMovie()
     }
 
+    deleteMovie = (id) => {
+
+        if (window.confirm("Do you want to delete this movie?")) {
+            this.setState({ arr: id });
+            return (
+                fetch(`/api/movies/${id}`, {
+                    method: 'DELETE',
+                    headers: {'Content-type': 'application/json'}
+                }).then(r => r.json()).then(res => {
+                    if (res) {
+                        this.props.deleteMoviePush(this.state.arr)
+                        return res;
+                    }
+                })
+            );
+        }
+    }
+
     render() {
         const {movieData} = this.props.movieData
-
-        const handleSubmit = () => {
+        const handleSubmit = (e) => {
+            e.preventDefault()
             importMovie()
         }
 
@@ -23,7 +44,7 @@ class Movies extends Component {
                 <div className="main">
                     <div className="center">
                         <div className="uploadFile">
-                            <form  onSubmit={handleSubmit}>
+                            <form onSubmit={handleSubmit}>
                                 <label>
                                     Upload file:
                                     <input id="file" type="file"/>
@@ -33,13 +54,24 @@ class Movies extends Component {
                         </div>
                         <div className="listMovie">
                             {movieData.map(item =>
-                                <NavLink to={`/movie/:${item.id}`} key={item.id}>
-                                    <div className="itemList">
-                                        <div className="title"><p><strong>Name movie:</strong></p><p>{item.Title}</p></div>
-                                        <div className="author"><p><strong>Author movie:</strong></p>{item.Stars.map((item, index) => <p key={index}>{item}</p>)}
+                                <div className="listMovie-item" key={item.id}>
+                                    <NavLink to={`/movie/:${item.id}`}
+                                             onClick={() => this.props.takeIdMovie(item.id)}>
+                                        <div className="itemList">
+                                            <div className="title"><p><strong>Name movie:</strong></p>
+                                                <p>{item.Title}</p>
+                                            </div>
+                                            <div className="author"><p><strong>Author movie:</strong></p>
+                                                <p>{item.Stars}</p>
+                                            </div>
                                         </div>
+                                    </NavLink>
+                                    <div className="wrap-for-btn">
+                                        <button className="btn-delete"
+                                                onClick={() => this.deleteMovie(item._id)}>delete
+                                        </button>
                                     </div>
-                                </NavLink>
+                                </div>
                             )}
                         </div>
                     </div>
@@ -53,8 +85,11 @@ class Movies extends Component {
 }
 
 const mapStateToProps = ({movieData}) => ({movieData: movieData})
+
 const mapDispatchToProps = dispatch => ({
-    fetchMovie: () => dispatch(fetchMovie())
+    fetchMovie: () => dispatch(fetchMovie()),
+    takeIdMovie: (id) => dispatch(takeIdMovie(id)),
+    deleteMoviePush: (id) => dispatch(deleteMoviePush(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Movies);

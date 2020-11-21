@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/ArthurDorokin/webbylab#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "concurrently": "^5.3.0",
     "express": "^4.17.1",
     "moment": "^2.29.1",

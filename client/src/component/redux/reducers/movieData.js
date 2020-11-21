@@ -21,17 +21,28 @@ export default (state = initialState, action) => {
         case "SET_FILTER":
             return {
                 ...state,
-                movieData: state.movieData.sort((a, b) => a.Title > b.Title ? 1: -1)
+                movieData: state.movieData.sort((a, b) => a.Title > b.Title ? 1 : -1)
             }
         case "SET_SEARCH":
             return {
                 ...state,
                 movieData: state.movieData.filter(item => item.Title.toLowerCase().includes(action.payload.toLowerCase()))
             }
-        case "SET_RESET":
+        case "TAKE_ID_MOVIE":
             return {
                 ...state,
-                movieData: state.movieData.sort((a, b) => a.id > b.id ? 1 : -1)
+                movieId: action.payload
+            }
+        case "TAKE_MOVIE_PUSH":
+            return {
+                ...state,
+                movieData: state.movieData.concat(action.payload)
+            }
+        case "DELETE_PUSH_MOVIE":
+            console.log(action)
+            return {
+                ...state,
+                movieData: state.movieData.filter(item => item._id !== action.payload)
             }
         default:
             return state;
