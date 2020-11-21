@@ -5,5 +5,8 @@ const upload = require('../middleware/upload');
 
 router.get('/', controller.getAll);
 router.get('/:id', controller.getById);
-router.post('/',upload.single('file'), controller.importMovie);
+router.post('/:file', upload.single('file'), controller.importMovie);
+router.post('/', controller.addMovie);
+router.delete('/:id', controller.deleteMovie);
+
 module.exports = router;

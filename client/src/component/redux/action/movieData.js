@@ -23,7 +23,7 @@ export const fetchMovie = () => {
                 dispatch(fetchMovieSuccess(data))
             })
             .catch(error => {
-                const errorMsg = error.message
+                const errorMsg = error.error.message
                 dispatch(fetchMovieFailure(errorMsg))
             })
     }
@@ -35,7 +35,7 @@ export const importMovie = () => {
     let imagefile = document.querySelector('#file');
     formData.append('file', imagefile.files[0]);
     console.log('>> formData >> ', formData);
-    axios.post('/api/movies/',
+    axios.post('/api/movies/import',
         formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'

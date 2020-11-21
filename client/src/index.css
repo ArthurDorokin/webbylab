@@ -5,8 +5,11 @@
 
 .main {
     display: flex;
-    /*align-items: end;*/
     justify-content: space-between;
+}
+
+.main .center {
+    width: 70%;
 }
 
 .main .uploadFile {
@@ -44,9 +47,23 @@
     padding: 15px 0;
 }
 
+.main .listMovie .itemList .author strong {
+    width: 120px;
+    display: inline-block;
+}
+
+.main .listMovie .itemList .title {
+    display: flex;
+}
+
+.main .listMovie .itemList .title strong {
+    width: 118px;
+    display: inline-block;
+}
+
 .main .listMovie .itemList .author {
     display: flex;
-    align-items: center;
+    align-items: baseline;
 }
 
 .main .listMovie .itemList .author p {
@@ -55,10 +72,11 @@
 
 .main .left {
     margin: 50px 0 0 0;
-    width: 200px;
+    width: 25%;
 }
+
 /*sidebar*/
-.main .left .sidebar {
+.main .left .sidebar .block-filter {
     width: 100%;
     border: 1px solid rgba(0, 0, 0, .2);
 }
@@ -83,4 +101,40 @@
     outline: none;
     box-sizing: border-box;;
 }
+
+
+.main .left .sidebar .block-form {
+    margin: 25px 0 0 0;
+}
+
+.main .left .sidebar .block-form form {
+    display: flex;
+    flex-direction: column;
+}
+
+.main .left .sidebar .block-form form input {
+    margin: 0 0 8px 0;
+    width: 100%;
+    display: flex;
+    padding: 7px 35px 7px 10px;
+    border: 1px solid #d6d6d6;
+    position: relative;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.main .left .sidebar .block-form form .btn-add-data {
+    outline: none;
+    border: none;
+    background: #82e054;
+    padding: 6px 15px 6px 15px;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.main .left .sidebar .block-form form .btn-add-data:hover {
+    background: #47a01b;
+    transition: .5s;
+}
+
 /*sidebar*/

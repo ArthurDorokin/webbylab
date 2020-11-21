@@ -14,8 +14,7 @@ class Movies extends Component {
     render() {
         const {movieData} = this.props.movieData
 
-        const handleSubmit = (e) => {
-            e.preventDefault();
+        const handleSubmit = () => {
             importMovie()
         }
 
@@ -36,9 +35,8 @@ class Movies extends Component {
                             {movieData.map(item =>
                                 <NavLink to={`/movie/:${item.id}`} key={item.id}>
                                     <div className="itemList">
-                                        <div className="title"><strong>Name movie:</strong> {item.Title}</div>
-                                        <div className="author"><strong>Author
-                                            movie:</strong>{item.Stars.map((item, index) => <p key={index}>{item}</p>)}
+                                        <div className="title"><p><strong>Name movie:</strong></p><p>{item.Title}</p></div>
+                                        <div className="author"><p><strong>Author movie:</strong></p>{item.Stars.map((item, index) => <p key={index}>{item}</p>)}
                                         </div>
                                     </div>
                                 </NavLink>
