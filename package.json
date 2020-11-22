@@ -4,11 +4,11 @@
   "description": "test",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app.js",
     "server": "nodemon index.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -30,9 +30,12 @@
     "react-router-dom": "^5.2.0"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "line-reader": "^0.4.0",
     "linereader": "^1.1.0",
+    "mocha": "^8.2.1",
     "multer": "^1.4.2"
   }
 }

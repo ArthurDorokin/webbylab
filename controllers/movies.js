@@ -40,16 +40,20 @@ module.exports.importMovie = async function (req, res) {
 
                 reader.on('line', line => {
                     if (line.startsWith('Title:')) {
-                        array.push(line.split('Title:'))
+                        let a = line.trim()
+                        array.push(a.split('Title:'))
                     }
                     if (line.startsWith('Release Year:')) {
-                        array.push(line.split('Release Year:'))
+                        let a = line.trim()
+                        array.push(a.split('Release Year:'))
                     }
                     if (line.startsWith('Format:')) {
-                        array.push(line.split('Format:'))
+                        let a = line.trim()
+                        array.push(a.split('Format:'))
                     }
                     if (line.startsWith('Stars:')) {
-                        array.push(line.split('Stars:'))
+                        let a = line.trim()
+                        array.push(a.split('Stars:'))
                     }
                 });
 
