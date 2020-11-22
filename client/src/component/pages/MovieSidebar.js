@@ -44,7 +44,7 @@ class MovieSidebar extends Component {
         const releaseYear = e.target.validity.valid ? e.target.value : this.state.ReleaseYear;
         this.setState({ ReleaseYear: releaseYear });
     }
-ß
+
     render() {
         const {Title, ReleaseYear, Format, Stars} = this.state;
 
