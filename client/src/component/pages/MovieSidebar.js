@@ -31,7 +31,7 @@ class MovieSidebar extends Component {
             this.props.takeMoviePush(this.state.arr)
             return res;
         })
-
+        alert('Add new movie')
         this.setState({
             Title: '',
             ReleaseYear: '',

@@ -14,8 +14,7 @@ class Movies extends Component {
         this.props.fetchMovie();
     }
 
-    handleSubmit = (e) => {
-        //e.preventDefault()
+    handleSubmit = () => {
         importMovie()
     }
 
