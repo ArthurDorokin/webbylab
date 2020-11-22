@@ -88,6 +88,7 @@ module.exports.importMovie = async function (req, res) {
         }
     } else {
         errorHandler(res, 'Please select file!');
+
     }
 }
 

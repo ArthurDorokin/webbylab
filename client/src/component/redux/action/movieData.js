@@ -25,7 +25,6 @@ export const deleteMoviePush = id => ({
 })
 
 
-
 export const fetchMovie = () => {
     return (dispatch) => {
         dispatch(fetchMovieRequest)
@@ -44,8 +43,8 @@ export const fetchMovie = () => {
 
 export const importMovie = () => {
     let formData = new FormData();
-    let imagefile = document.querySelector('#file');
-    formData.append('file', imagefile.files[0]);
+    let imageFile = document.querySelector('#file');
+    formData.append('file', imageFile.files[0]);
     console.log('>> formData >> ', formData);
     axios.post('/api/movies/import',
         formData, {
@@ -53,10 +52,7 @@ export const importMovie = () => {
                 'Content-Type': 'multipart/form-data'
             }
         }
-    ).then(function () {
-        console.log('SUCCESS!!');
-    })
-        .catch(function () {
-            console.log('FAILURE!!');
-        });
+    ).catch((e) => {
+        alert(JSON.parse(e.response.request.responseText).message);
+    });
 }
