@@ -11,15 +11,10 @@ class MovieSidebar extends Component {
         arr: []
     };
 
-    onUpdateSearchName = (e) => {
+    onUpdateSearch = (e) => {
         this.props.setSearch(e.target.value)
     };
 
-    onUpdateSearchActor = (e) => {
-        //this.props.setSearch(e.target.value)
-    };
-
-    // form add
     handleChange = (e) => {
         let { name, value } = e.target;
         this.setState({ [name]: value });
@@ -45,6 +40,11 @@ class MovieSidebar extends Component {
         });
     }
 
+    handleChanges = (e) => {
+        const releaseYear = e.target.validity.valid ? e.target.value : this.state.ReleaseYear;
+        this.setState({ ReleaseYear: releaseYear });
+    }
+ß
     render() {
         const {Title, ReleaseYear, Format, Stars} = this.state;
 
@@ -56,20 +56,14 @@ class MovieSidebar extends Component {
                         <input className="input-search"
                                type="text"
                                placeholder="Search movie for name..."
-                               onChange={this.onUpdateSearchName}
-                        />
-                        <br/>
-                        <input className="input-search"
-                               type="text"
-                               placeholder="Search movie for name actor..."
-                               onChange={this.onUpdateSearchActor}
+                               onChange={this.onUpdateSearch}
                         />
                     </div>
                 </div>
                 <div className="block-form">
                     <form onSubmit={this.addMovie}>
                         <input type="text" name="Title" value={Title} onChange={this.handleChange} placeholder="Title..." />
-                        <input type="text" name="ReleaseYear" value={ReleaseYear} onChange={this.handleChange} placeholder="Release Year..." />
+                        <input type="text" pattern="[0-9]*" onInput={this.handleChanges} name="ReleaseYear" value={ReleaseYear} placeholder="Release Year..." />
                         <input type="text" name="Format" value={Format} onChange={this.handleChange} placeholder="Format..." />
                         <input type="text" name="Stars" value={Stars} onChange={this.handleChange} placeholder="Stars..." />
                         <button className={`${"btn-add-data"} ${this.state.Title.length >= 1 && 

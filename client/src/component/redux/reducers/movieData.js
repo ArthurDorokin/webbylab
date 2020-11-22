@@ -1,5 +1,6 @@
 const initialState = {
-    movieData: []
+    movieData: [],
+    search:[]
 }
 
 export default (state = initialState, action) => {
@@ -26,7 +27,7 @@ export default (state = initialState, action) => {
         case "SET_SEARCH":
             return {
                 ...state,
-                movieData: state.movieData.filter(item => item.Title.toLowerCase().includes(action.payload.toLowerCase()))
+                search: action.payload
             }
         case "TAKE_ID_MOVIE":
             return {
@@ -39,7 +40,6 @@ export default (state = initialState, action) => {
                 movieData: state.movieData.concat(action.payload)
             }
         case "DELETE_PUSH_MOVIE":
-            console.log(action)
             return {
                 ...state,
                 movieData: state.movieData.filter(item => item._id !== action.payload)

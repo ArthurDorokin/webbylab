@@ -14,8 +14,12 @@ class Movies extends Component {
         this.props.fetchMovie()
     }
 
-    deleteMovie = (id) => {
+    handleSubmit = (e) => {
+        e.preventDefault()
+        importMovie()
+    }
 
+    deleteMovie = (id) => {
         if (window.confirm("Do you want to delete this movie?")) {
             this.setState({ arr: id });
             return (
@@ -33,18 +37,16 @@ class Movies extends Component {
     }
 
     render() {
-        const {movieData} = this.props.movieData
-        const handleSubmit = (e) => {
-            e.preventDefault()
-            importMovie()
-        }
+        const {movieData, search} = this.props.movieData
+        const movieDataNew = movieData.filter(item => item.Title.toLowerCase().includes(search.toLowerCase()) ||
+            item.Stars[0].toLowerCase().includes(search.toLowerCase()) )
 
         return (
             <div className="container">
                 <div className="main">
                     <div className="center">
                         <div className="uploadFile">
-                            <form onSubmit={handleSubmit}>
+                            <form onSubmit={this.handleSubmit}>
                                 <label>
                                     Upload file:
                                     <input id="file" type="file"/>
@@ -53,7 +55,7 @@ class Movies extends Component {
                             </form>
                         </div>
                         <div className="listMovie">
-                            {movieData.map(item =>
+                            {movieDataNew.map(item =>
                                 <div className="listMovie-item" key={item.id}>
                                     <NavLink to={`/movie/:${item.id}`}
                                              onClick={() => this.props.takeIdMovie(item.id)}>
