@@ -11,11 +11,11 @@ class Movies extends Component {
     };
 
     componentDidMount() {
-        this.props.fetchMovie()
+        this.props.fetchMovie();
     }
 
     handleSubmit = (e) => {
-        e.preventDefault()
+        //e.preventDefault()
         importMovie()
     }
 

@@ -20,9 +20,10 @@ export default (state = initialState, action) => {
                 error: action.payload
             }
         case "SET_FILTER":
+            console.log(action)
             return {
                 ...state,
-                movieData: state.movieData.sort((a, b) => a.Title > b.Title ? 1 : -1)
+                movieData: state.movieData.sort((a, b) => a.Title < b.Title ? 1 : -1)
             }
         case "SET_SEARCH":
             return {
