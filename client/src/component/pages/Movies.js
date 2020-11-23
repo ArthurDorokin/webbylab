@@ -37,8 +37,8 @@ class Movies extends Component {
 
     render() {
         const {movieData, search} = this.props.movieData
-        const movieDataNew = movieData.filter(item => item.Title.toLowerCase().includes(search.toLowerCase()) ||
-            item.Stars[0].toLowerCase().includes(search.toLowerCase()) )
+        const movieDataNew = movieData.filter(item => item.Title.toLowerCase().includes(search.toString().toLowerCase()) ||
+            item.Stars[0].toLowerCase().includes(search.toString().toLowerCase()) )
 
         return (
             <div className="container">
