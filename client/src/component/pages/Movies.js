@@ -7,8 +7,17 @@ import {importMovie} from "../redux/action/movieData";
 
 class Movies extends Component {
     state = {
-        arr: []
+        arr: [],
+        currentPage: 1,
+        className: "false",
+        todosPerPage: 5
     };
+
+    //pagination
+    handleClick = (e) => {
+        this.setState({currentPage: Number(e.target.id)});
+    }
+    //pagination
 
     componentDidMount() {
         this.props.fetchMovie();
@@ -34,11 +43,40 @@ class Movies extends Component {
             );
         }
     }
-
     render() {
         const {movieData, search} = this.props.movieData
         const movieDataNew = movieData.filter(item => item.Title.toLowerCase().includes(search.toString().toLowerCase()) ||
             item.Stars[0].toLowerCase().includes(search.toString().toLowerCase()) )
+
+        const { todos, currentPage, todosPerPage } = this.state;
+
+        // Logic for displaying current todos
+        const indexOfLastTodo = currentPage * todosPerPage;
+        const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
+        const currentTodos = movieDataNew.slice(indexOfFirstTodo, indexOfLastTodo);
+
+        const renderTodos = currentTodos.map((todo, index) => {
+            return <li key={index}>{todo}</li>;
+        });
+
+        // Logic for displaying page numbers
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(movieDataNew.length / todosPerPage); i++) {
+            pageNumbers.push(i);
+        }
+
+        const renderPageNumbers = pageNumbers.map(number => {
+            return (
+                <li
+                    key={number}
+                    id={number}
+                    className={this.state.currentPage === number ? "true" : "false"}
+                    onClick={this.handleClick}
+                >
+                    {number}
+                </li>
+            );
+        });
 
         return (
             <div className="container">
@@ -54,27 +92,29 @@ class Movies extends Component {
                             </form>
                         </div>
                         <div className="listMovie">
-                            {movieDataNew.length === 0 ? "No movies" : movieDataNew.map(item =>
-                                    <div className="listMovie-item" key={item.id}>
-                                        <NavLink to={`/movie/:${item.id}`}
-                                                 onClick={() => this.props.takeIdMovie(item.id)}>
+                            {renderTodos.length === 0 ? "No movies" : renderTodos.map(item =>
+                                    <div className="listMovie-item" key={item.props.children.id}>
+                                        <NavLink to={`/movie/:${item.props.children.id}`}
+                                                 onClick={() => this.props.takeIdMovie(item.props.children.id)}>
                                             <div className="itemList">
                                                 <div className="title"><p><strong>Name movie:</strong></p>
-                                                    <p>{item.Title}</p>
+                                                    <p>{item.props.children.Title}</p>
                                                 </div>
                                                 <div className="author"><p><strong>Author movie:</strong></p>
-                                                    <p>{item.Stars}</p>
+                                                    <p>{item.props.children.Stars}</p>
                                                 </div>
                                             </div>
                                         </NavLink>
                                         <div className="wrap-for-btn">
                                             <button className="btn-delete"
-                                                    onClick={() => this.deleteMovie(item._id)}>delete
+                                                    onClick={() => this.deleteMovie(item.props.children._id)}>delete
                                             </button>
                                         </div>
                                     </div>
                                 )}
-
+                            <ul id="page-numbers">
+                                {renderPageNumbers}
+                            </ul>
                         </div>
                     </div>
                     <div className="left">

@@ -48,6 +48,26 @@
     padding: 15px 0;
 }
 
+.main #page-numbers {
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 35px 0 0 0;
+}
+
+.main #page-numbers li {
+    list-style: none;
+    padding: 3px 10px;
+    border: 1px solid #d6d6d6;
+    margin: 0 2px 0 2px;
+    cursor: pointer;
+}
+
+.main #page-numbers li.true {
+    background: #88b0d4;
+}
+
 .main .listMovie .itemList .author strong {
     width: 120px;
     display: inline-block;
