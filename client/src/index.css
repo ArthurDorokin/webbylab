@@ -197,6 +197,10 @@
     margin: 50px 0 0 0;
 }
 
+.block-info .block-info-wrap .list-format {
+    margin: 0 5px 0 0;
+}
+
 .block-info .block-info-wrap p strong {
     width: 110px;
     display: inline-block;

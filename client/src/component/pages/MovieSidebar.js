@@ -39,15 +39,12 @@ class MovieSidebar extends Component {
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify(this.state)
         }).then(r => r.json()).then(res => {
-
-            if (!res.errors.length) {
+            if (res.errors === undefined) {
                 this.setState({arr: res});
                 this.props.takeMoviePush(this.state.arr)
+            } else {
+                res.errors.map(item => alert(item.msg));
             }
-
-            res.errors.map(item =>
-                alert(item.msg)
-            );
             return res;
         })
 

@@ -17,6 +17,7 @@ class Movies extends Component {
     handleClick = (e) => {
         this.setState({currentPage: Number(e.target.id)});
     }
+
     //pagination
 
     componentDidMount() {
@@ -29,7 +30,7 @@ class Movies extends Component {
 
     deleteMovie = (id) => {
         if (window.confirm("Do you want to delete this movie?")) {
-            this.setState({ arr: id });
+            this.setState({arr: id});
             return (
                 fetch(`/api/movies/${id}`, {
                     method: 'DELETE',
@@ -43,14 +44,14 @@ class Movies extends Component {
             );
         }
     }
+
     render() {
         const {movieData, search} = this.props.movieData
         const movieDataNew = movieData.filter(item => item.Title.toLowerCase().includes(search.toString().toLowerCase()) ||
-            item.Stars[0].toLowerCase().includes(search.toString().toLowerCase()) )
+            item.Stars[0].toLowerCase().includes(search.toString().toLowerCase()))
 
-        const { todos, currentPage, todosPerPage } = this.state;
+        const {currentPage, todosPerPage} = this.state;
 
-        // Logic for displaying current todos
         const indexOfLastTodo = currentPage * todosPerPage;
         const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
         const currentTodos = movieDataNew.slice(indexOfFirstTodo, indexOfLastTodo);
@@ -59,24 +60,10 @@ class Movies extends Component {
             return <li key={index}>{todo}</li>;
         });
 
-        // Logic for displaying page numbers
         const pageNumbers = [];
         for (let i = 1; i <= Math.ceil(movieDataNew.length / todosPerPage); i++) {
             pageNumbers.push(i);
         }
-
-        const renderPageNumbers = pageNumbers.map(number => {
-            return (
-                <li
-                    key={number}
-                    id={number}
-                    className={this.state.currentPage === number ? "true" : "false"}
-                    onClick={this.handleClick}
-                >
-                    {number}
-                </li>
-            );
-        });
 
         return (
             <div className="container">
@@ -93,27 +80,38 @@ class Movies extends Component {
                         </div>
                         <div className="listMovie">
                             {renderTodos.length === 0 ? "No movies" : renderTodos.map(item =>
-                                    <div className="listMovie-item" key={item.props.children.id}>
-                                        <NavLink to={`/movie/:${item.props.children.id}`}
-                                                 onClick={() => this.props.takeIdMovie(item.props.children.id)}>
-                                            <div className="itemList">
-                                                <div className="title"><p><strong>Name movie:</strong></p>
-                                                    <p>{item.props.children.Title}</p>
-                                                </div>
-                                                <div className="author"><p><strong>Author movie:</strong></p>
-                                                    <p>{item.props.children.Stars}</p>
-                                                </div>
+                                <div className="listMovie-item" key={item.props.children.id}>
+                                    <NavLink to={`/movie/:${item.props.children.id}`}
+                                             onClick={() => this.props.takeIdMovie(item.props.children.id)}>
+                                        <div className="itemList">
+                                            <div className="title"><p><strong>Name movie:</strong></p>
+                                                <p>{item.props.children.Title}</p>
                                             </div>
-                                        </NavLink>
-                                        <div className="wrap-for-btn">
-                                            <button className="btn-delete"
-                                                    onClick={() => this.deleteMovie(item.props.children._id)}>delete
-                                            </button>
+                                            <div className="author"><p><strong>Author movie:</strong></p>
+                                                <p>{item.props.children.Stars}</p>
+                                            </div>
                                         </div>
+                                    </NavLink>
+                                    <div className="wrap-for-btn">
+                                        <button className="btn-delete"
+                                                onClick={() => this.deleteMovie(item.props.children._id)}>delete
+                                        </button>
                                     </div>
-                                )}
+                                </div>
+                            )}
                             <ul id="page-numbers">
-                                {renderPageNumbers}
+                                {movieData.length >= 6 ?
+                                    pageNumbers.map(number =>
+                                        <li
+                                            key={number}
+                                            id={number}
+                                            className={this.state.currentPage === number ? "true" : "false"}
+                                            onClick={this.handleClick}
+                                        >
+                                            {number}
+                                        </li>
+                                    ) :
+                                    ''}
                             </ul>
                         </div>
                     </div>

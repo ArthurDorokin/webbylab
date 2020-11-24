@@ -9,10 +9,10 @@ const movies = new schema({
         type: Number
     },
     Format: {
-        type: String
+        type: Array
     },
     Stars: {
-        type: Array
+        type: String
     },
     id: {
         type: Number,

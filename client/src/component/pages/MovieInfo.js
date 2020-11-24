@@ -17,7 +17,9 @@ class MovieInfo extends Component {
                         <div className="block-info-wrap" key={item.id}>
                             <p><strong>Title: </strong>{item.Title}</p>
                             <p><strong>Release Year: </strong> {item.ReleaseYear}</p>
-                            <p><strong>Format: </strong> {item.Format}</p>
+                            <p><strong>Format: </strong> {item.Format.map((item, index) => (
+                                <span key={index} className="list-format">{item}</span>
+                            ))}</p>
                             <p><strong>Stars: </strong> {item.Stars}</p>
                         </div>
                     )}

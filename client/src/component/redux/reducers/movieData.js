@@ -40,7 +40,6 @@ export default (state = initialState, action) => {
                 movieId: action.payload
             }
         case "TAKE_MOVIE_PUSH":
-            console.log(action)
             return {
                 ...state,
                 movieData: state.movieData.concat(action.payload)

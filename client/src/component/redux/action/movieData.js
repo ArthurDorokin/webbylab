@@ -44,7 +44,6 @@ export const importMovie = () => {
     let formData = new FormData();
     let imageFile = document.querySelector('#file');
     formData.append('file', imageFile.files[0]);
-    console.log('>> formData >> ', formData);
     axios.post('/api/movies/import',
         formData, {
             headers: {
