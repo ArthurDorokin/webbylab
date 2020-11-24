@@ -24,7 +24,6 @@ export const deleteMoviePush = id => ({
     payload: id
 })
 
-
 export const fetchMovie = () => {
     return (dispatch) => {
         dispatch(fetchMovieRequest)

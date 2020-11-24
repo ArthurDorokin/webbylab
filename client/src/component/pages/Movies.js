@@ -54,26 +54,27 @@ class Movies extends Component {
                             </form>
                         </div>
                         <div className="listMovie">
-                            {movieDataNew.map(item =>
-                                <div className="listMovie-item" key={item.id}>
-                                    <NavLink to={`/movie/:${item.id}`}
-                                             onClick={() => this.props.takeIdMovie(item.id)}>
-                                        <div className="itemList">
-                                            <div className="title"><p><strong>Name movie:</strong></p>
-                                                <p>{item.Title}</p>
+                            {movieDataNew.length === 0 ? "No movies" : movieDataNew.map(item =>
+                                    <div className="listMovie-item" key={item.id}>
+                                        <NavLink to={`/movie/:${item.id}`}
+                                                 onClick={() => this.props.takeIdMovie(item.id)}>
+                                            <div className="itemList">
+                                                <div className="title"><p><strong>Name movie:</strong></p>
+                                                    <p>{item.Title}</p>
+                                                </div>
+                                                <div className="author"><p><strong>Author movie:</strong></p>
+                                                    <p>{item.Stars}</p>
+                                                </div>
                                             </div>
-                                            <div className="author"><p><strong>Author movie:</strong></p>
-                                                <p>{item.Stars}</p>
-                                            </div>
+                                        </NavLink>
+                                        <div className="wrap-for-btn">
+                                            <button className="btn-delete"
+                                                    onClick={() => this.deleteMovie(item._id)}>delete
+                                            </button>
                                         </div>
-                                    </NavLink>
-                                    <div className="wrap-for-btn">
-                                        <button className="btn-delete"
-                                                onClick={() => this.deleteMovie(item._id)}>delete
-                                        </button>
                                     </div>
-                                </div>
-                            )}
+                                )}
+
                         </div>
                     </div>
                     <div className="left">

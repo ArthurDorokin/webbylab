@@ -20,15 +20,19 @@ export default (state = initialState, action) => {
                 error: action.payload
             }
         case "SET_FILTER":
-            console.log(action)
             return {
                 ...state,
-                movieData: state.movieData.sort((a, b) => a.Title < b.Title ? 1 : -1)
+                movieData: state.movieData.sort((a, b) => a.Title.toLowerCase() > b.Title.toLowerCase() ? 1 : -1)
             }
         case "SET_SEARCH":
             return {
                 ...state,
                 search: action.payload
+            }
+        case "RESET_SEARCH":
+            return {
+                ...state,
+                search: ''
             }
         case "TAKE_ID_MOVIE":
             return {
@@ -36,6 +40,7 @@ export default (state = initialState, action) => {
                 movieId: action.payload
             }
         case "TAKE_MOVIE_PUSH":
+            console.log(action)
             return {
                 ...state,
                 movieData: state.movieData.concat(action.payload)

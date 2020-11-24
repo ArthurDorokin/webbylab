@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {NavLink} from "react-router-dom";
+import {resetSearch} from "../redux/action/sidebarFilter";
 
 class MovieInfo extends Component {
     render() {
@@ -8,7 +9,7 @@ class MovieInfo extends Component {
         return (
             <div className="container">
                 <h2>Detailed information</h2>
-                <div className="back-page">
+                <div className="back-page" onClick={this.props.resetSearch}>
                     <NavLink to="/">Back to page</NavLink>
                 </div>
                 <div className="block-info">
@@ -31,4 +32,8 @@ const mapStateToProps = ({movieData}) => ({
     movieData: movieData
 })
 
-export default connect(mapStateToProps, null)(MovieInfo);
+const mapDispatchToProps = dispatch => ({
+    resetSearch: () => dispatch(resetSearch()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieInfo);

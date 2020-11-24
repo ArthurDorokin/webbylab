@@ -7,6 +7,11 @@ export const setSearch = search => ({
     payload: search
 });
 
+export const resetSearch = () => ({
+    type: "RESET_SEARCH"
+})
+
+
 export const takeMoviePush = movie => ({
     type: 'TAKE_MOVIE_PUSH',
     payload: movie

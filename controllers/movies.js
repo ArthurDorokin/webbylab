@@ -7,6 +7,8 @@ module.exports.getAll = async function (req, res) {
     try {
         const movies = await Movie
             .find()
+            .skip(+req.query.offset)
+            .limit(+req.query.limit);
         res.status(200).json(movies);
 
     } catch (e) {
@@ -40,19 +42,26 @@ module.exports.importMovie = async function (req, res) {
 
                 reader.on('line', line => {
                     if (line.startsWith('Title:')) {
-                        let a = line.trim()
+                        let a = line.trim();
                         array.push(a.split('Title:'))
                     }
                     if (line.startsWith('Release Year:')) {
-                        let a = line.trim()
+                        let a = line.trim();
                         array.push(a.split('Release Year:'))
                     }
                     if (line.startsWith('Format:')) {
-                        let a = line.trim()
+                        let a = line.trim();
                         array.push(a.split('Format:'))
                     }
                     if (line.startsWith('Stars:')) {
-                        let a = line.trim()
+                        let a = line.trim();
+                        let ch = [];
+                        ch.push(a.toLowerCase().split(/ [,]+ /));
+                        for (let i=0;i<=ch.length;i++) {
+                            if (ch[0].includes(ch[0][i], i+1)) {
+                                errorHandler(res, 'Same actors could not be in one movie! Please check.')
+                            }
+                        }
                         array.push(a.split('Stars:'))
                     }
                 });
@@ -109,6 +118,13 @@ module.exports.deleteMovie = async function (req, res) {
 
 module.exports.addMovie = async function (req, res) {
     if (req.body.Title && req.body.ReleaseYear && req.body.Format && req.body.Stars) {
+        let check = [];
+        check.push(req.body.Stars.toLowerCase().split(/[,]+ /));
+        for (let i=0;i<=check.length;i++) {
+                if (check[0].includes(check[0][i], i+1)) {
+                    errorHandler(res, 'Same actors could not be in one movie! Please check.')
+            }
+        }
         const movie = new Movie({
             Title: req.body.Title,
             ReleaseYear: req.body.ReleaseYear,
