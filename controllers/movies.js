@@ -138,10 +138,10 @@ module.exports.addMovie = async function (req, res) {
             } else {
                 if (success == null) {
                     const movie = new Movie({
-                        Title: req.body.Title.replace(/^\s+/g, ''),
+                        Title: req.body.Title,
                         ReleaseYear: req.body.ReleaseYear,
-                        Format: req.body.Format.replace(/^\s+/g, ''),
-                        Stars: req.body.Stars.replace(/^\s+/g, ''),
+                        Format: req.body.Format,
+                        Stars: req.body.Stars,
                         id: Math.floor(Math.random() * (15000 - 100) + 100 - 6)
                     });
                     try {
