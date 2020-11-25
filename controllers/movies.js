@@ -82,10 +82,10 @@ module.exports.importMovie = async function (req, res) {
                                     } else {
                                         if (success == null) {
                                             const movies = new Movie({
-                                                Title: resp[i][1],
+                                                Title: resp[i][1].replace(/^\s+/g, ''),
                                                 ReleaseYear: resp[i + 1][1],
-                                                Format: resp[i + 2][1],
-                                                Stars: resp[i + 3][1],
+                                                Format: resp[i + 2][1].replace(/^\s+/g, ''),
+                                                Stars: resp[i + 3][1].replace(/^\s+/g, ''),
                                                 id: Math.floor(i + Math.random() * (15000 - 100 - i) + 100 - i)
                                             });
                                             movies.save();
