@@ -1,7 +1,7 @@
 const {check, validationResult} = require('express-validator');
 const express = require('express');
 const controller = require('../controllers/movies');
-const router = express.Router()
+const router = express.Router();
 const upload = require('../middleware/upload');
 
 router.get('/', controller.getAll);
